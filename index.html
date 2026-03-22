@@ -131,7 +131,24 @@ button{
     <button class="close" onclick="closePopup()">Close</button>
   </div>
 </div>
+ <p>Total visits to this page:</p>
+  <div id="count" style="display: none;">0</div>
 
+  <!-- CDN script to call CountAPI -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const namespace = 'imeshsanfuel';  // change to a unique name
+    const key = 'homepage';            // page identifier
+
+    // Increment and get count from CountAPI
+    axios.get(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+      .then(response => {
+        document.getElementById('count').textContent = response.data.value;
+      })
+      .catch(err => {
+        console.error('Error fetching count:', err);
+      });
+  </script>
 <script>
 let selected = null;
 
