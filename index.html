@@ -119,6 +119,7 @@ button{
 <div class="grid" id="numbers"></div>
 
 <button onclick="check()">Check Eligibility</button>
+<audio src="./sound.mp3" id="sound" preload="auto" hidden></audio>
 
     <small style=" text-align: center; margin: 15px;">Developed by <a href="https://github.com/imeshsan2008">DarkVenom</a></small>
 
@@ -174,6 +175,7 @@ function check(){
 
     // show popup
     document.getElementById("popup").style.display="flex";
+    document.getElementById("sound").play();
 }
 
 function closePopup(){
