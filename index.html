@@ -115,6 +115,7 @@ button{
 
 <h2>Fuel Day Tracker</h2>
 <p>Select last digit</p>
+<p id="viewCount">loading...</p>
 
 <div class="grid" id="numbers"></div>
 
@@ -131,24 +132,20 @@ button{
     <button class="close" onclick="closePopup()">Close</button>
   </div>
 </div>
- <p>Total visits to this page:</p>
-  <div id="count" style="display: none;">0</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+const API_BASE = "https://api.counterapi.dev/v2/anti-gravitys-team-3414/first-counter-3414";
+const API_KEY = "ut_JjkKp1xwtCFp0qwlQUgsWoX3Gd67chYJSN2fIbCh"; // replace with your actual key
 
-  <!-- CDN script to call CountAPI -->
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    const namespace = 'imeshsanfuel';  // change to a unique name
-    const key = 'homepage';            // page identifier
-
-    // Increment and get count from CountAPI
-    axios.get(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-      .then(response => {
-        document.getElementById('count').textContent = response.data.value;
-      })
-      .catch(err => {
-        console.error('Error fetching count:', err);
-      });
-  </script>
+// Increment counter
+axios.get(API_BASE + "/up", {
+  headers: { Authorization: `Bearer ${API_KEY}` }
+})
+.then(res => {
+  console.log("Updated Count:", res.data.value);
+})
+.catch(err => console.error("CounterAPI Error:", err));
+</script>
 <script>
 let selected = null;
 
